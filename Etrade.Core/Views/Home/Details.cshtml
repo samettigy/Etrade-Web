@@ -1,0 +1,62 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card mb-3">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/image/@Model.Image" class="card-img rounded" alt="@Model.Name">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <span class="badge text-primary">Stock:@Model.Stock</span>
+                <p class="lead">@Model.Description</p>
+                <div class="col-md-3 text-warning">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                    <i class="bi bi-star"></i>
+                    <span class="badge text-success">60</span>
+                </div>
+                @*<form method="post" asp-action="Buy" asp-controller="Cart" asp-route-id="@Model.Id">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="number" name="quantity" value="1" class="mt-5 form-control" placeholder="Adet" />
+                        </div>
+                        <div class="col-md-9">
+                            <div class="shadow px-1 my-3 bg-body-tertiary rounded col-md-4">
+                                <span class="badge text-danger fs-6">@Model.Price.ToString("C")</span>
+                                <br>
+                                <button type="submit" class="btn btn-primary ms-2 mb-2">
+                                    <i class="bi bi-cart-plus-fill text-warning"></i>
+                                    Add To Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>*@
+
+                @*Ajax ile*@
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="number" id="quantity" name="quantity" value="1" class="mt-5 form-control" placeholder="Adet" />
+                    </div>
+                    <div class="col-md-9">
+                        <div class="shadow px-1 my-3 bg-body-tertiary rounded col-md-4">
+                            <span class="badge text-danger fs-6">@Model.Price.ToString("C")</span>
+                            <br>
+
+                            <button onclick="addToCart(@Model.Id)" class="btn btn-primary ms-2 mb-2">
+                                <i class="bi bi-cart-plus-fill text-warning"></i>
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@model OrderStateViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+<form asp-action="Edit">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th style="text-align:center !important">
+                    @Html.DisplayNameFor(model => model.OrderId)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model=> model.OrderId)
+                </td>
+                <td>
+                    <input type="checkbox" asp-for="@Model.IsCompleted" /> Completed
+                    <input type="hidden" asp-for="@Model.OrderId" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary" type="submit">Order Completed</button>
+</form>

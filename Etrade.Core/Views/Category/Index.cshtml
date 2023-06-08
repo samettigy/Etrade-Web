@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Etrade.Entity.Models.Entities.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th style="text-align:center !important">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                <center>@Html.DisplayNameFor(model => model.Description)</center>
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CartItem>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cart</h1>
+<hr />
+@if (Model == null)
+{
+    <div class="alert alert-danger" role="alert">
+        Cart is Empty
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Product.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>@((item.Product.Price * item.Quantity).ToString("c"))</td>
+                    <td>
+                        <a class="btn btn-danger" asp-action="Remove" asp-route-id="@item.Product.Id">
+                            Remove
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total Price</td>
+                <td>@ViewBag.Total</td>
+            </tr>
+        </tfoot>
+    </table>
+}
+<div>
+    <a asp-action="List" asp-controller="Home" class="btn btn-primary float-start">Keep Shopping</a>
+    <a asp-action="CheckOut" class="btn btn-success float-end">Complete Shopping</a>
+</div>

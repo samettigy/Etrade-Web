@@ -1,0 +1,28 @@
+﻿@model Etrade.Entity.Models.ViewModels.ListViewModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        @await Html.PartialAsync("_CategoryList",Model.Categories)
+    </div>
+    <div class="col-md-9">
+        @if (Model.Products.Count == 0)
+        {
+            <div class="alert alert-warning" role="alert">              
+                <i class="bi bi-exclamation-circle"></i>
+                No Products Found in this Category!
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-success" role="alert">
+                <i class="bi bi-exclamation-circle"></i>
+                <strong>@Model.Products.Count</strong> Products Found in this Category.
+            </div>
+        }
+        @await Html.PartialAsync("_ProductList",Model.Products)
+    </div>
+</div>
+

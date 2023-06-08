@@ -1,0 +1,53 @@
+﻿@model ShippingDetail
+@{
+    ViewData["Title"] = "CheckOut";
+}
+
+<h1>Shipping Details</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CheckOut">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                @if (User.Identity.Name != null)
+                {
+                    <input asp-for="Username" value="@User.Identity.Name" class="form-control" />
+                }
+                else
+                {
+                    <input asp-for="Username" class="form-control" />
+                }
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressTitle" class="control-label"></label>
+                <input asp-for="AddressTitle" class="form-control" />
+                <span asp-validation-for="AddressTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Region" class="control-label"></label>
+                <input asp-for="Region" class="form-control" />
+                <span asp-validation-for="Region" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Next" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

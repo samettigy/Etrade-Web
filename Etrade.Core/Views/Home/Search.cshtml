@@ -1,0 +1,65 @@
+﻿@model Etrade.Entity.Models.ViewModels.ListViewModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <ul class="list-group">
+            @if (ViewBag.Id == null)
+            {
+                <a class="list-group-item active" asp-controller="Home" asp-action="Search">
+                    All Categories
+                </a>
+            }
+            else
+            {
+                <a class="list-group-item" asp-controller="Home" asp-action="Search" asp-route-id="">
+                    All Categories
+                </a>
+            }
+            @foreach (var category in Model.Categories)
+            {
+                if (ViewBag.Id != null)
+                {
+                    if (category.Id == ViewBag.Id)
+                    {
+                        <a class="list-group-item active" asp-controller="Home" asp-action="Search" asp-route-id="@category.Id">
+                            @category.Name
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="list-group-item" asp-controller="Home" asp-action="Search" asp-route-id="@category.Id">
+                            @category.Name
+                        </a>
+                    }
+                }
+                else
+                {
+                    <a class="list-group-item" asp-controller="Home" asp-action="Search" asp-route-id="@category.Id">
+                        @category.Name
+                    </a>
+                }
+            }
+        </ul>
+    </div>
+    <div class="col-md-9">
+        @if (Model.Products.Count == 0)
+        {
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-circle"></i>
+                No Products Found in this Category!
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-success" role="alert">
+                <i class="bi bi-exclamation-circle"></i>
+                <strong>@Model.Products.Count</strong> Products Found in this Category.
+            </div>
+        }
+        @await Html.PartialAsync("_ProductList",Model.Products)
+    </div>
+</div>
+

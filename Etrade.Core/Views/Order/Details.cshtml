@@ -1,0 +1,64 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Details</h1>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderState)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderState)
+        </dd>
+    </dl>
+</div>
+<div class="alert alert-danger" role="alert">
+    @Model.OrderLines.Count
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderLines)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.Product.Price</td>
+                <td>@item.Quantity</td>
+                <td>@((item.Product.Price * item.Quantity).ToString("c"))</td>                
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">Total Price</td>
+            <td>@Model.TotalPrice</td>
+        </tr>
+    </tfoot>
+</table>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Order List</h1>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th style="text-align:center !important">
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                <center>@Html.DisplayNameFor(model => model.OrderState)</center>
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderState)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Order State Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

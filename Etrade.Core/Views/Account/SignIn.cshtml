@@ -1,0 +1,24 @@
+﻿@model Etrade.Entity.Models.ViewModels.SignInViewModel
+@{
+    ViewData["Title"] = "SignIn";
+}
+
+<h1>SignIn</h1>
+<form method="post"> 
+    <div class="form-group">
+        <label asp-for="UsernameOrEmail" class="control-label"></label>
+        <input asp-for="UsernameOrEmail" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input asp-for="RememberMe" type="checkbox" class="form-check-input"/>
+        <label asp-for="RememberMe" class="control-label"></label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Login" class="btn btn-primary" />
+    </div>
+</form>
+<a class="btn btn-primary" asp-controller="Account" asp-action="ExternalLogin" asp-route-provider="Google">Google</a>
